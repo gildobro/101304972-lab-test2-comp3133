@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { MissionDetailsService } from '../services/missiondetails.service';
 
 @Component({
   selector: 'app-missiondetails',
@@ -9,17 +9,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MissiondetailsComponent {
   missionDetails: any;
+  @Input() flight_number: string = '';
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
-  ) {}
+    private missionDetailsService: MissionDetailsService
+  ){ }
 
-  ngOnInit() {
+  ngOnInit(){
     const flightNumber = this.route.snapshot.paramMap.get('flight_number');
-    const url = `https://api.spacexdata.com/v3/launches/${flightNumber}`;
-    this.http.get(url).subscribe(data => {
-      this.missionDetails = data;
-    });
+    if (flightNumber) {
+      this.missionDetailsService.getMissionDetails(flightNumber).subscribe((data: any) => {
+        this.missionDetails = data[0];
+      });
+    }    
   }
+
 }

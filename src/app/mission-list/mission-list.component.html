@@ -1,4 +1,15 @@
-<table>
+<h1>SpaceX Mission Launch List</h1>
+<app-mission-filter (yearSelected)="OnYearSelected($event)"></app-mission-filter>
+<ul>
+    <li *ngFor="let launch of launches">
+        <h3>{{ launch.mission_name }} ({{ launch.launch_year }})</h3>
+        <div>
+            <img src="{{ launch.links.mission_patch_small }}" alt="{{ launch.mission_name }} mission patch">
+            <p>{{ launch.details}}</p>
+        </div>
+    </li>
+</ul>
+<!-- <table>
     <thead>
       <tr>
         <th>Mission Patch</th>
@@ -18,4 +29,4 @@
       </tr>
     </tbody>
   </table>
-  
+   -->

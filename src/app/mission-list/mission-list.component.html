@@ -1,5 +1,5 @@
 <h1>SpaceX Mission Launch List</h1>
-<app-mission-filter (yearSelected)="OnYearSelected($event)"></app-mission-filter>
+<app-mission-filter (yearSelected)="onYearSelected($event)"></app-mission-filter>
 <ul>
     <li *ngFor="let launch of launches">
         <h3>{{ launch.mission_name }} ({{ launch.launch_year }})</h3>

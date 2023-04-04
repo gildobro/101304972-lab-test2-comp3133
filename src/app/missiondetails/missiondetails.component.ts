@@ -19,9 +19,14 @@ export class MissiondetailsComponent {
   ngOnInit(){
     const flightNumber = this.route.snapshot.paramMap.get('flight_number');
     if (flightNumber) {
-      this.missionDetailsService.getMissionDetails(flightNumber).subscribe((data: any) => {
-        this.missionDetails = data[0];
-      });
+      try{
+        this.missionDetailsService.getMissionDetails(flightNumber).subscribe((data: any) => {
+          this.missionDetails = data;
+          console.log('Mission Details:', data);
+        });
+      } catch (error) {
+        console.error('Error fetching misison details:', error);
+      }
     }    
   }
 

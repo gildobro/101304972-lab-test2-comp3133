@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MissionDetailsService } from '../services/missiondetails.service';
+import { Mission } from '../models/mission';
 
 @Component({
   selector: 'app-missiondetails',
